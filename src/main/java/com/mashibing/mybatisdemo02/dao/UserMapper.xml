@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mashibing.mybatisdemo02.dao.UserMapper">
+    <!--   回显id   useGeneratedKeys="true" keyProperty="id"  -->
+    <insert id="addUser" parameterType="com.mashibing.mybatisdemo02.pojo.User" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user(username,address,gender)values(#{name},#{address},#{gender})
+    </insert>
+
+    <select id="query" parameterType="java.lang.Integer" resultType="com.mashibing.mybatisdemo02.pojo.User">
+        select * from t_user where id = #{id}
+    </select>
+    <!--  多参数设置  -->
+    <update id="updateUser" >
+        update t_user set username=#{username} where id = #{id}
+    </update>
+    <!-- 包装   -->
+    <insert id="addUserWrapper" parameterType="com.mashibing.mybatisdemo02.pojo.UserWrapper">
+        <selectKey keyProperty="user.id" resultType="int">
+            select LAST_INSERT_ID();
+        </selectKey>
+        insert into t_user(username,address,gender)values(#{user.name},#{user.address},#{user.gender})
+    </insert>
+    
+    <resultMap id="baseMap" type="com.mashibing.mybatisdemo02.pojo.User">
+        <!-- column 数据库字段    property javabean字段   -->
+        <id property="id" column="id"/>
+        <result column="username" property="name"/>
+<!--        <result column="address" property="address"/>-->
+<!--        <result column="gender" property="gender"/>-->
+    </resultMap>
+    <select id="allUser" resultMap="baseMap">
+        select * from t_user
+    </select>
+
+    <select id="queryUser" parameterType="com.mashibing.mybatisdemo02.pojo.User" resultType="com.mashibing.mybatisdemo02.pojo.User">
+        select * from t_user
+        --  前缀添加和去空的字符
+        <trim prefix="where" prefixOverrides="AND | OR">
+            <if test="username != null">
+                and username = #{username}
+            </if>
+            <if test="address != null">
+                and address = #{address}
+            </if>
+        </trim>
+    </select>
+    
+    <select id="queryChoose" parameterType="com.mashibing.mybatisdemo02.pojo.User" resultType="com.mashibing.mybatisdemo02.pojo.User">
+        select * from t_user
+        where 1=1
+        <choose>
+            <when test="username != null">
+                and username = #{username}
+            </when>
+            <when test="address != null">
+                and address = #{address}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+    </select>
+
+    <update id="updateUser1" parameterType="com.mashibing.mybatisdemo02.pojo.User" >
+        update t_user
+        <set>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="address">
+                address = #{address},
+            </if>
+            <if test="gender" >
+                gender = #{gender}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="queryByIds" resultType="com.mashibing.mybatisdemo02.pojo.User">
+
+        select * from t_user
+        <where>
+            <if test="ids !=null">
+            id in
+                <foreach collection="ids" open=" ( " separator="," close=" ) " item="id">
+                    #{id}
+                </foreach>
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertUser" >
+        insert into t_user(username,address,gender) values 
+        <foreach collection="users" separator="," item="user" >
+            (#{user.username},#{user.address},#{user.gender})
+        </foreach>
+    </insert>
+</mapper>

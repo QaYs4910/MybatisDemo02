@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 声明全局变量  -->
+    <properties resource="db.properties">
+        
+    </properties>
+    <typeAliases>
+        <typeAlias type="com.mashibing.mybatisdemo02.pojo.User" alias="user"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+<!--        <mapper resource="com/mashibing/mybatisdemo02/dao/UserMapper.xml"/>-->
+<!--        <mapper class="com.mashibing.mybatisdemo02.dao.UserMapper"></mapper>-->
+        <package name="com.mashibing.mybatisdemo02.dao"/>
+    </mappers>
+</configuration>

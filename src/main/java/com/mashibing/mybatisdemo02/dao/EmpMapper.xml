@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mashibing.mybatisdemo02.dao.EmpMapper">
+
+    <resultMap id="baseMap1" type="com.mashibing.mybatisdemo02.pojo.Emp">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="age" property="age"/>
+        <!-- 配置1对1的关联关系 -->
+        <association property="dept" javaType="com.mashibing.mybatisdemo02.pojo.Dept">
+            <!--  从表的属性和字段的映射关系-->
+            <id column="deptid" property="deptid"/>
+            <result column="dname" property="dname"/>
+        </association>
+    </resultMap>
+
+    <select id="queryEmp" resultMap="baseMap1">
+        SELECT
+            t1.id,
+            t1.`name`,
+            t1.`age`,
+            t2.`deptid`,
+            t2.`dname`
+        FROM
+            t_emp t1
+                LEFT JOIN t_dept t2
+                          ON t1.`deptid` = t2.`deptid`
+    </select>
+</mapper>

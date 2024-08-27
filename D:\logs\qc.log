@@ -1,0 +1,12 @@
+2024-08-27 17:51:54,891-[TS] ERROR main com.mashibing.mybatisdemo02.MybatisDemo02Application - log:error
+2024-08-27 17:51:54,893-[TS] WARN main com.mashibing.mybatisdemo02.MybatisDemo02Application - log:warn
+2024-08-27 17:51:54,893-[TS] INFO main com.mashibing.mybatisdemo02.MybatisDemo02Application - log:info
+2024-08-27 17:51:54,893-[TS] DEBUG main com.mashibing.mybatisdemo02.MybatisDemo02Application - log:debug
+2024-08-27 17:57:18,658-[TS] ERROR main com.mashibing.mybatisdemo02.MybatisDemo02Application - log:error
+2024-08-27 17:57:18,661-[TS] WARN main com.mashibing.mybatisdemo02.MybatisDemo02Application - log:warn
+2024-08-27 17:57:18,661-[TS] INFO main com.mashibing.mybatisdemo02.MybatisDemo02Application - log:info
+2024-08-27 17:57:18,661-[TS] DEBUG main com.mashibing.mybatisdemo02.MybatisDemo02Application - log:debug
+2024-08-27 17:59:24,423-[TS] ERROR main com.mashibing.mybatisdemo02.MybatisDemo02Application - log:error
+2024-08-27 17:59:24,425-[TS] WARN main com.mashibing.mybatisdemo02.MybatisDemo02Application - log:warn
+2024-08-27 17:59:24,425-[TS] INFO main com.mashibing.mybatisdemo02.MybatisDemo02Application - log:info
+2024-08-27 17:59:24,425-[TS] DEBUG main com.mashibing.mybatisdemo02.MybatisDemo02Application - log:debug
