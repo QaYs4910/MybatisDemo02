@@ -1,5 +1,7 @@
 package com.mashibing.mybatisdemo02.pojo;
 
+import java.util.List;
+
 public class Dept {
 
     private Integer deptid;
@@ -7,6 +9,16 @@ public class Dept {
     private String dname;
 
     private String ddesc;
+
+    private List<Emp> emps;
+
+    public List<Emp> getEmps() {
+        return emps;
+    }
+
+    public void setEmps(List<Emp> emps) {
+        this.emps = emps;
+    }
 
     public Integer getDeptid() {
         return deptid;
@@ -38,7 +50,7 @@ public class Dept {
                 "deptid=" + deptid +
                 ", dname='" + dname + '\'' +
                 ", ddesc='" + ddesc + '\'' +
+                ", emps=" + emps +
                 '}';
     }
-
 }

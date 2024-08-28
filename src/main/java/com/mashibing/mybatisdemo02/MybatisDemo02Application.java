@@ -2,6 +2,7 @@ package com.mashibing.mybatisdemo02;
 
 import com.mashibing.mybatisdemo02.dao.EmpMapper;
 import com.mashibing.mybatisdemo02.dao.UserMapper;
+import com.mashibing.mybatisdemo02.pojo.Dept;
 import com.mashibing.mybatisdemo02.pojo.Emp;
 import com.mashibing.mybatisdemo02.pojo.User;
 import com.mashibing.mybatisdemo02.pojo.UserWrapper;
@@ -55,9 +56,9 @@ public class MybatisDemo02Application {
 //        Integer i = mapper.insertUser(users);
 //        System.out.println(i);
         EmpMapper mapper = sqlSession.getMapper(EmpMapper.class);
-        List<Emp> emps = mapper.queryEmp();
-        for (Emp emp:emps){
-            System.out.println(emp + ":"+emp.getDept());
+        List<Dept> depts = mapper.queryDept();
+        for (Dept dept : depts) {
+            System.out.println(dept +""+dept.getEmps());
         }
         // 5.提交资源并关闭连接
         sqlSession.commit();

@@ -28,4 +28,28 @@
                 LEFT JOIN t_dept t2
                           ON t1.`deptid` = t2.`deptid`
     </select>
+
+    <resultMap id="baseMap2" type="com.mashibing.mybatisdemo02.pojo.Dept">
+        <id column="deptid" property="deptid"/>
+        <result column="dname" property="dname"/>
+        <collection property="emps" ofType="com.mashibing.mybatisdemo02.pojo.Emp">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="age" property="age"/>
+        </collection>
+    </resultMap>
+
+    <select id="queryDept" resultMap="baseMap2">
+
+        SELECT
+            t1.`deptid`
+             ,t1.`dname`
+             ,t1.`ddesc`
+             ,t2.`id`
+             ,t2.`name`
+             ,t2.age
+        FROM t_dept t1
+                 LEFT JOIN t_emp t2
+                           ON t1.`deptid` = t2.`deptid`
+    </select>
 </mapper>
